@@ -37,7 +37,8 @@ class FilmViewHolder(val binding: ItemFilmBinding) : ViewHolder(binding.root) {
 
     fun render(film: Film) {
         binding.nameTextView.text = film.Title
-        Picasso.get().load(film.Poster.url).into(binding.posterImageView)
+        binding.yearTextView.text = film.Year
+        Picasso.get().load(film.Poster).into(binding.posterImageView)
     }
 
 }

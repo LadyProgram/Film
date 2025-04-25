@@ -1,6 +1,7 @@
 package com.ladyprogram.film.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -38,14 +39,47 @@ class DetailActivity : AppCompatActivity() {
 
         val id = intent.getStringExtra("SUPERHERO_ID")!! //Se o¡puede añadir defaultValue: -1
         getFilmById(id)
+
+        binding.navigationBar.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_info -> {
+                    binding.plotContent.root.visibility = View.GONE
+                    binding.infoContent.root.visibility = View.VISIBLE
+
+                }
+
+                R.id.action_plot -> {
+                    binding.plotContent.root.visibility = View.VISIBLE
+                    binding.infoContent.root.visibility = View.GONE
+                }
+            }
+
+            true
+        }
+
+        binding.navigationBar.selectedItemId = R.id.action_info
     }
+
 
     fun loadData() {
         //Toast.makeText(this, film.name, Toast.LENGTH_LONG).show()
-        Picasso.get().load(film.Poster.url).into(binding.posterImageView)
+        Picasso.get().load(film.Poster).into(binding.posterImageView)
 
-        supportActionBar?.title = film.name
-        supportActionBar?.subtitle = film.biography.realName
+        supportActionBar?.title = film.Title
+        //supportActionBar?.subtitle = film.Year
+
+        //INFO
+        binding.infoContent.titleTextView.text = film.Title
+        binding.infoContent.yearTextView.text = film.Year
+        binding.infoContent.directorTextView.text = film.Director
+        binding.infoContent.runtimeTextView.text = film.Runtime
+        binding.infoContent.genreTextView.text = film.Genre
+        binding.infoContent.countryTextView.text = film.Country
+
+        //PLOT
+        binding.plotContent.plotTextView.text = film.Plot
+
+    }
 
     fun getRetrofit(): FilmService {
         val retrofit = Retrofit.Builder()

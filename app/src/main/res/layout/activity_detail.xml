@@ -8,7 +8,7 @@
     tools:context=".activities.DetailActivity">
 
     <ImageView
-        android:id="@+id/pictureImageView"
+        android:id="@+id/posterImageView"
         android:layout_width="match_parent"
         android:layout_height="480dp"
         android:scaleType="centerCrop"
@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pictureImageView">
+        app:layout_constraintTop_toBottomOf="@id/posterImageView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,19 +36,15 @@
                 android:id="@+id/navigationBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu="@menu/menu_activity_detail_navigation"/>
+                app:menu="@menu/menu_activity_detail"/>
 
             <include
-                android:id="@+id/biographyContent"
-                layout="@layout/content_biography"/>
+                android:id="@+id/infoContent"
+                layout="@layout/content_info"/>
 
             <include
-                android:id="@+id/appearanceContent"
-                layout="@layout/content_appearance"/>
-
-            <include
-                android:id="@+id/statsContent"
-                layout="@layout/content_stats"/>
+                android:id="@+id/plotContent"
+                layout="@layout/content_plot"/>
 
         </LinearLayout>
 

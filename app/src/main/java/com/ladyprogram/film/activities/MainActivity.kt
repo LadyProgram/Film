@@ -3,8 +3,10 @@ package com.ladyprogram.film.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -52,7 +54,31 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
 
 
-        searchFilmByName("sp")
+        searchFilmByName("Titan")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main, menu)
+
+        val menuItem = menu?.findItem(R.id.menu_search)
+        val searchView = menuItem?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                //Log.i("MENU", "He pulsado Enter")
+                searchFilmByName(query)
+                return false
+            }
+
+
+            override fun onQueryTextChange(s: String): Boolean {
+                //Log.i("MENU", s)
+                return true
+            }
+        })
+
+        return true
+
     }
 
     fun searchFilmByName(query: String) {
@@ -64,8 +90,8 @@ class MainActivity : AppCompatActivity() {
                 filmList = result.results
 
                 CoroutineScope(Dispatchers.Main).launch {
-                   // adapter.items = filmList
-                    //adapter.notifyDataSetChanged()
+                    adapter.items = filmList
+                    adapter.notifyDataSetChanged()
 
                 }
             } catch (e: Exception) {
@@ -77,5 +103,4 @@ class MainActivity : AppCompatActivity() {
             //Log.i("API", filmList.toString())
         }
     }
-
 }

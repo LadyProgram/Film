@@ -11,11 +11,12 @@ interface FilmService {
     @GET("#")
     suspend fun findFilmByName(
         @Query("s") query: String,
-        @Query("apikey") apiKey: String = "1e6219c6",
+        @Query("apikey") apiKey: String = "fb7aca4",
         ): FilmResponse
 
     @GET("#")
-    suspend fun findFilmById(@Path("i") id: String): Film
+    suspend fun findFilmById(@Query("i") id: String,
+                             @Query("apikey") apiKey: String = "fb7aca4"): Film
 
     companion object {
         fun getRetrofit(): FilmService {
