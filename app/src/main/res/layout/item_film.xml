@@ -9,34 +9,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/text_background_item"
         app:cardElevation="8dp">
 
         <ImageView
             android:id="@+id/posterImageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:src="@mipmap/ic_launcher"
-            android:scaleType="centerCrop"/>
+            android:layout_height="237dp"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/yearTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Year"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="normal"
-            android:gravity="right"
             android:padding="10dp"
-            android:layout_gravity="left"/>
+            android:layout_gravity="end"/>
 
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Name superhero"
+            tools:text="Name film"
             android:textColor="@color/white"
+            android:background="@color/text_background"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"

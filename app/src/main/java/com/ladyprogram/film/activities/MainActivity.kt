@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
 
 
-        searchFilmByName("Titan")
+        searchFilmByName("Red")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
